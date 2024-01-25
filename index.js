@@ -13,14 +13,52 @@ let exerciceArray = [
   { pic: 9, min: 1 },
 ]
 
-class Ewercice {}
+class Exercice {}
 
 const utils = {
 
+  pageContent : function(title, content, btn){
+    document.querySelector("h1").innerHTML = title;
+    main.innerHTML = content;
+    document.querySelector(".btn-container").innerHTML = btn;
+  }
 }
 
 const page = {
   lobby: function() {
+    let mapArray = exerciceArray
+    .map(
+      (exo) =>
+      `
+      <li>
+        <div class="card-header">
+          <input type="number" id)${exo.pic} min="1" max="10" value=${exo.min}>
+          <span>min</span>
+        </div>
+      </li>
+      `,
+    )
+    .join();
+
+    utils.pageContent(
+      "Paramétrage <i id='reboot' class='fas fa-undo'></i>",
+      "<ul>" + mapArray + "</ul>",
+      "<button id='start'>Commencer<i class='far fa-play-circle'></i></button>",
+      );
+    },
     
-  }
-}
+    routine: function() {
+      utils.pageContent(
+      "Routine","Exercice avec chrono", null);
+  },
+  
+  finish: function() {
+    utils.pageContent(
+    "C'est terminé",
+    "<button id='start'>Recommencer</button>",
+    "<button id='reboot' class='btn-reboot'>Réinitialiser<i class='far fa-play-circle'></i></button>",
+  );
+  },
+};
+
+page.lobby();
