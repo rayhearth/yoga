@@ -17,7 +17,7 @@ let exerciceArray = [];
 //Get stored exercices array
 (() => {
 	if (localStorage.exercices) {
-		exerciceArray = localStorage.exercices;
+		exerciceArray = JSON.parse(localStorage.exercices);
 	} else {
 		exerciceArray = basicArray;
 	}
@@ -88,7 +88,7 @@ const utils = {
 	},
 
 	store: function () {
-		localStorage.exercices = exerciceArray;
+		localStorage.exercices = JSON.stringify(exerciceArray);
 	},
 };
 
